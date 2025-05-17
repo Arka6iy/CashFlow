@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Редактировать транзакцию</title>
+</head>
+<body>
+    <h1>Редактировать транзакцию</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Сохранить</button>
+      <a href="{% url 'form' %}">
+      <button type="button">Обратно</button>
+    </a>
+    </form>
+
+
+</body>
+</html>

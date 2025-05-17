@@ -1,24 +1,31 @@
-from .models import Transaction, Status , Type, Category, SubCategory
+from .models import Transaction, Status, Category, SubCategory, Kind, Combo
 from django.contrib import admin
 
 
 @admin.register(Transaction)
 class CreateAdmin(admin.ModelAdmin):
-    list_display = ('created_at', 'status', 'kind', 'category', 'amount', 'note')
+    list_display = ('created_at', 'status','combo', 'amount', 'note')
+
+@admin.register(Combo)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('kind','category', 'sub_category')
+
+
 
 @admin.register(Status)
-class StatusRow(admin.ModelAdmin):
+class StatusAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
-@admin.register(Type)
-class TypeRow(admin.ModelAdmin):
+@admin.register(Kind)
+class KindAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
 
 @admin.register(Category)
-class CategoryRow(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
+
 @admin.register(SubCategory)
-class SubCategoryRow(admin.ModelAdmin):
-    list_display = ('sub_category','data' )
+class SubCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
