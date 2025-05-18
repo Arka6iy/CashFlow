@@ -1,6 +1,7 @@
 {% extends 'app/form.html' %}
 
 {% block content %}
+<div class="table-edite px-4">
 <form action="{% url 'form' %}" method="post" id="form">
     {% if result %}
         <table border="2">
@@ -45,14 +46,15 @@
     {% else %}
         <p>No transactions found.</p>
     {% endif %}
-
     {% csrf_token %}
+    <div class="form mt-3">
     {{ form.as_p }}
-
-    <button type="submit">Сохранить</button>
+    </div>
+    <button type="submit" class="btn btn-primary ">Сохранить</button>
     <a href="{% url 'home' %}">
-      <button type="button">Обратно</button>
+    <button  type="button" class="btn btn-secondary ">Обратно</button>
     </a>
 </form>
+</div>
 
 {% endblock %}

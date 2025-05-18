@@ -22,56 +22,75 @@
 </head>
 <body>
 
-    <h1>Transactions</h1>
-        <form method="get">
-        <label>Start date:
-            <input type="date" name="start_date" value="{{ request.GET.start_date }}">
-        </label>
-        <label>End date:
-            <input type="date" name="end_date" value="{{ request.GET.end_date }}">
-        </label>
-        <label>Status:
-            <select name="status">
-                <option value="">All</option>
-                {% for i in statuses %}
-                   <option value="{{ i.name }}"> {{ i.name }}</option>
-                {% endfor %}
-            </select>
-        </label>
-        <label>Kind:
-            <select name="kind" id="kind">
-                <option value="">All</option>
-                {% for i in kinds %}
-                    <option >{{i.name}}</option>
-                {% endfor %}
-            </select>
-        </label>
-        <label>Category:
-            <select name="category" id="category">
-                <option value="">All</option>
-                {% for c in categories %}
-                  <option >{{ c.name }}</option>
-                {% endfor %}
-            </select>
-        </label>
-        <label>Subcategory:
-            <select name="sub_category" id="sub_category">
-                <option value="">All</option>
-                    {% for s in sub_categories %}
-                        <option >{{s.name}}</option>
-                    {% endfor %}
+    <h1 class="px-4">Transactions</h1>
+<div class="filters px-4">
+    <form method="get">
+      <div class="row g-2 align-items-end">
 
-            </select>
-        </label>
-        <button type="submit">Filter</button>
+        <div class="col-md-2">
+          <label for="start_date" class="form-label">Start date:</label>
+          <input type="date" id="start_date" name="start_date" class="form-control" value="{{ request.GET.start_date }}">
+        </div>
+
+        <div class="col-md-2">
+          <label for="end_date" class="form-label">End date:</label>
+          <input type="date" id="end_date" name="end_date" class="form-control" value="{{ request.GET.end_date }}">
+        </div>
+
+        <div class="col-md-2">
+          <label for="status" class="form-label">Status:</label>
+          <select name="status" class="form-select form-select-sm">
+            <option value="">All</option>
+            {% for i in statuses %}
+              <option value="{{ i.name }}">{{ i.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-md-2">
+          <label for="kind" class="form-label">Kind:</label>
+          <select name="kind" id="kind" class="form-select form-select-sm">
+            <option value="">All</option>
+            {% for i in kinds %}
+              <option>{{ i.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-md-2">
+          <label for="category" class="form-label">Category:</label>
+          <select name="category" id="category" class="form-select form-select-sm">
+            <option value="">All</option>
+            {% for c in categories %}
+              <option>{{ c.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-md-2">
+          <label for="sub_category" class="form-label">Subcategory:</label>
+          <select name="sub_category" id="sub_category" class="form-select form-select-sm">
+            <option value="">All</option>
+            {% for s in sub_categories %}
+              <option>{{ s.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary ">Применить фильтр</button>
+        </div>
+      </div>
     </form>
-
+</div>
+    <div class="table px-4 mt-2">
     <!-- основная таблица-->
     {% include "partials/table.html" %}
-
     <a href="{% url 'form' %}">
-      <button type="button">Добавить/Изменить таблицу</button>
+      <button type="button" class="btn btn-secondary mt-2">Добавить/Изменить таблицу</button>
     </a>
+    </div>
+
     <script>
     document.getElementById("kind").addEventListener("change", function () {
         const kind = this.value;
